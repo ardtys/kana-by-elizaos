@@ -1,0 +1,288 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout>
+  <PageHead slot="head" title="API Reference - Documentation" />
+
+  <div class="mx-auto w-full max-w-[calc(var(--container-3xl)-2rem)]">
+    <Breadcrumbs
+      items={[
+        { label: 'Docs', href: '/docs', icon: 'lucide:book-open' },
+        { label: 'API Reference', icon: 'lucide:code-2' },
+      ]}
+    />
+  </div>
+
+  <section class="mx-auto flex max-w-[calc(var(--container-3xl)-2rem)] flex-col gap-6">
+    <!-- Header -->
+    <div>
+      <h1 class="font-mono text-3xl font-bold text-foreground mb-2">API Reference</h1>
+      <p class="font-sans text-muted-foreground">
+        Complete reference for the KANA SDK. All methods, parameters, and return values documented.
+      </p>
+    </div>
+
+    <!-- Core Methods -->
+    <div class="bento-card p-6">
+      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Core Methods</h2>
+
+      <!-- chat() method -->
+      <div class="mb-8 pb-8 border-b border-border">
+        <div class="flex items-start gap-3 mb-4">
+          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
+          <div class="flex-1">
+            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">kana.chat(message, options?)</h3>
+            <p class="font-sans text-sm text-muted-foreground">
+              Send a message to KANA and receive a response based on the knowledge base.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4 pl-3">
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Parameters</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4 space-y-2">
+              <div class="font-mono text-sm">
+                <span class="text-cyan-glow">message</span>
+                <span class="text-muted-foreground mx-2">:</span>
+                <span class="text-amber">string</span>
+                <span class="text-muted-foreground ml-2">— The user's query or message</span>
+              </div>
+              <div class="font-mono text-sm">
+                <span class="text-cyan-glow">options?</span>
+                <span class="text-muted-foreground mx-2">:</span>
+                <span class="text-amber">ChatOptions</span>
+                <span class="text-muted-foreground ml-2">— Optional configuration</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Returns</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4">
+              <div class="font-mono text-sm">
+                <span class="text-amber">Promise&lt;ChatResponse&gt;</span>
+                <span class="text-muted-foreground ml-2">— KANA's response with metadata</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4">
+              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const response = await kana.chat('What is Jito?')
+console.log(response.content)
+// "◈ JITO - MEV INFRASTRUCTURE ◈..."`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- getKnowledge() method -->
+      <div class="mb-8 pb-8 border-b border-border">
+        <div class="flex items-start gap-3 mb-4">
+          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
+          <div class="flex-1">
+            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">kana.getKnowledge(topic)</h3>
+            <p class="font-sans text-sm text-muted-foreground">
+              Retrieve specific knowledge without natural language processing.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4 pl-3">
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Parameters</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4">
+              <div class="font-mono text-sm">
+                <span class="text-cyan-glow">topic</span>
+                <span class="text-muted-foreground mx-2">:</span>
+                <span class="text-amber">KnowledgeTopic</span>
+                <span class="text-muted-foreground ml-2">— Topic identifier</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4">
+              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const solanaInfo = await kana.getKnowledge('solana')
+const securityTips = await kana.getKnowledge('phishing')`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- validateAddress() method -->
+      <div>
+        <div class="flex items-start gap-3 mb-4">
+          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
+          <div class="flex-1">
+            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">kana.validateAddress(address)</h3>
+            <p class="font-sans text-sm text-muted-foreground">
+              Validate a Solana wallet address and check for known risks.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4 pl-3">
+          <div>
+            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
+            <div class="rounded-lg bg-void-black border border-border p-4">
+              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const validation = await kana.validateAddress('7xKXt...AbC')
+if (validation.isValid && !validation.isScam) {
+  console.log('Address is safe')
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Types -->
+    <div class="bento-card p-6">
+      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">TypeScript Types</h2>
+
+      <div class="space-y-6">
+        <!-- ChatOptions -->
+        <div>
+          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">ChatOptions</h3>
+          <div class="rounded-lg bg-void-black border border-border p-4">
+            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`interface ChatOptions {
+  temperature?: number      // 0-1, default: 0.7
+  maxTokens?: number        // Max response length, default: 500
+  knowledge?: string[]      // Filter knowledge domains
+  includeMetadata?: boolean // Include response metadata
+}`}</code></pre>
+          </div>
+        </div>
+
+        <!-- ChatResponse -->
+        <div>
+          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">ChatResponse</h3>
+          <div class="rounded-lg bg-void-black border border-border p-4">
+            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`interface ChatResponse {
+  content: string           // KANA's response
+  confidence: number        // Confidence score (0-1)
+  topics: string[]          // Detected topics
+  timestamp: Date           // Response timestamp
+  metadata?: {
+    tokens: number
+    latency: number
+    sources: string[]
+  }
+}`}</code></pre>
+          </div>
+        </div>
+
+        <!-- KnowledgeTopic -->
+        <div>
+          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">KnowledgeTopic</h3>
+          <div class="rounded-lg bg-void-black border border-border p-4">
+            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`type KnowledgeTopic =
+  | 'solana' | 'svm' | 'jito' | 'jupiter'
+  | 'web3' | 'blockchain' | 'wallet'
+  | 'security' | 'phishing' | 'privatekey'
+  | 'bugs' | 'coffee' | 'stackoverflow' | 'coding'
+  | 'gaming' | 'anime' | 'gacha'
+  | 'meme' | 'wojak'`}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Handling -->
+    <div class="bento-card p-6">
+      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Error Handling</h2>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        All KANA methods can throw errors. Always wrap calls in try-catch blocks:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4 mb-4">
+        <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`try {
+  const response = await kana.chat('gm')
+  console.log(response.content)
+} catch (error) {
+  if (error instanceof KanaError) {
+    console.error('KANA Error:', error.code, error.message)
+  }
+}`}</code></pre>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+          <div class="font-mono text-sm font-medium text-destructive mb-2">RATE_LIMIT_EXCEEDED</div>
+          <p class="font-sans text-xs text-muted-foreground">
+            Too many requests. Wait before retrying.
+          </p>
+        </div>
+        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+          <div class="font-mono text-sm font-medium text-destructive mb-2">INVALID_API_KEY</div>
+          <p class="font-sans text-xs text-muted-foreground">
+            API key is missing or invalid.
+          </p>
+        </div>
+        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+          <div class="font-mono text-sm font-medium text-destructive mb-2">NETWORK_ERROR</div>
+          <p class="font-sans text-xs text-muted-foreground">
+            Failed to connect to KANA servers.
+          </p>
+        </div>
+        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
+          <div class="font-mono text-sm font-medium text-destructive mb-2">INVALID_PARAMETERS</div>
+          <p class="font-sans text-xs text-muted-foreground">
+            Invalid method parameters provided.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rate Limits -->
+    <div class="bento-card p-6">
+      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Rate Limits</h2>
+
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="rounded-lg border border-border bg-card-bg p-4">
+          <div class="font-mono text-2xl font-bold text-cyan-glow mb-1">100</div>
+          <div class="font-mono text-xs text-muted-foreground">Requests per minute</div>
+        </div>
+        <div class="rounded-lg border border-border bg-card-bg p-4">
+          <div class="font-mono text-2xl font-bold text-warm-gold mb-1">10,000</div>
+          <div class="font-mono text-xs text-muted-foreground">Requests per day</div>
+        </div>
+        <div class="rounded-lg border border-border bg-card-bg p-4">
+          <div class="font-mono text-2xl font-bold text-amber mb-1">1,000</div>
+          <div class="font-mono text-xs text-muted-foreground">Max tokens per request</div>
+        </div>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mt-4">
+        Rate limits apply per API key. Contact support for higher limits.
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      <a href="/docs/getting-started" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
+        <div class="flex items-center gap-2 mb-2">
+          <Icon name="lucide:arrow-left" class="text-warm-gold size-4" />
+          <span class="font-mono text-sm text-muted-foreground">Previous</span>
+        </div>
+        <div class="font-mono text-base font-semibold text-foreground group-hover:text-warm-gold transition-colors">Getting Started</div>
+      </a>
+
+      <a href="/docs/code-examples" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors text-right">
+        <div class="flex items-center justify-end gap-2 mb-2">
+          <span class="font-mono text-sm text-muted-foreground">Next</span>
+          <Icon name="lucide:arrow-right" class="text-cyan-glow size-4" />
+        </div>
+        <div class="font-mono text-base font-semibold text-foreground group-hover:text-cyan-glow transition-colors">Code Examples</div>
+      </a>
+    </div>
+  </section>
+</Layout>

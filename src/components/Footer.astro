@@ -1,0 +1,232 @@
+---
+import { SOCIAL_LINKS } from '@/consts'
+import SocialIcons from './SocialIcons.astro'
+---
+
+<footer class="footer-container relative">
+  <!-- Decorative Top Line with glow -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-solana-purple to-transparent footer-glow-line"></div>
+
+  <div class="mx-auto max-w-7xl px-4 py-10">
+
+    <!-- Supporters Section - Main Focus -->
+    <div class="text-center mb-10">
+      <h3 class="text-lg sm:text-xl md:text-2xl font-medium text-foreground mb-2 leading-relaxed">
+        Supporters who interacted, acknowledged,
+        <br class="hidden sm:block" />
+        or followed the journey.
+      </h3>
+      <p class="text-muted-foreground/70 text-sm mb-8">Thank you!</p>
+
+      <!-- Supporters Grid -->
+      <div class="flex justify-center items-center gap-10 sm:gap-16">
+        <!-- cjft -->
+        <a href="https://x.com/_cjft" target="_blank" rel="noopener noreferrer" class="supporter-card flex flex-col items-center gap-3 group">
+          <div class="relative">
+            <div class="absolute -inset-2 bg-gradient-to-r from-solana-purple to-solana-green rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div class="relative size-20 sm:size-24 rounded-full overflow-hidden border-2 border-solana-purple/40 group-hover:border-solana-purple group-hover:shadow-[0_0_25px_rgba(153,69,255,0.5)] transition-all duration-300">
+              <img src="/cjft.jpg" alt="cjft" class="size-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+          </div>
+          <span class="font-mono text-sm text-muted-foreground group-hover:text-foreground transition-colors">cjft</span>
+        </a>
+
+        <!-- shawmakesmagic -->
+        <a href="https://x.com/shawmakesmagic" target="_blank" rel="noopener noreferrer" class="supporter-card flex flex-col items-center gap-3 group">
+          <div class="relative">
+            <div class="absolute -inset-2 bg-gradient-to-r from-solana-purple to-solana-green rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div class="relative size-20 sm:size-24 rounded-full overflow-hidden border-2 border-solana-purple/40 group-hover:border-solana-purple group-hover:shadow-[0_0_25px_rgba(153,69,255,0.5)] transition-all duration-300">
+              <img src="/shawmakesmagic.jpg" alt="shawmakesmagic" class="size-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+          </div>
+          <span class="font-mono text-sm text-muted-foreground group-hover:text-foreground transition-colors">shawmakesmagic</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-solana-purple/20 to-transparent mb-8"></div>
+
+    <!-- Footer Content -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Left: Brand & Status -->
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <!-- Logo Mini -->
+        <div class="footer-brand flex items-center gap-3 group">
+          <div class="relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-solana-purple to-solana-green rounded-full blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+            <div class="relative size-9 rounded-full overflow-hidden border-2 border-solana-purple/40 group-hover:border-solana-purple transition-all duration-300">
+              <img src="/kana-logo.png" alt="KANA" class="size-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-sm font-bold bg-gradient-to-r from-solana-purple via-white to-solana-green bg-clip-text text-transparent">
+                KANA
+              </span>
+              <span class="footer-badge font-mono text-[9px] text-solana-purple/80 px-2 py-0.5 rounded-full bg-solana-purple/10 border border-solana-purple/30">
+                ElizaOS
+              </span>
+            </div>
+            <span class="font-mono text-[10px] text-muted-foreground/60 mt-0.5">
+              &copy; {new Date().getFullYear()} All rights reserved
+            </span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="hidden sm:block w-px h-6 bg-solana-purple/20"></div>
+
+        <!-- Network Status -->
+        <div class="footer-status flex items-center gap-2 px-3 py-1.5 rounded-full">
+          <span class="relative flex size-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-solana-green opacity-75"></span>
+            <span class="relative inline-flex rounded-full size-2 bg-solana-green"></span>
+          </span>
+          <span class="font-mono text-xs text-muted-foreground">
+            Network: <span class="text-solana-green font-semibold">Optimal</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Center: Tagline -->
+      <div class="hidden lg:block">
+        <p class="font-mono text-xs text-muted-foreground/70 italic">
+          "<span class="text-solana-purple">Beauty</span> is temporary. The <span class="text-solana-green">Blockchain</span> is eternal."
+        </p>
+      </div>
+
+      <!-- Right: Social & Links -->
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="/docs" class="footer-link font-mono text-xs text-muted-foreground hover:text-solana-purple transition-all duration-300 px-3 py-1.5 rounded-full">
+            Docs
+          </a>
+          <a href="/chat" class="footer-link font-mono text-xs text-muted-foreground hover:text-solana-green transition-all duration-300 px-3 py-1.5 rounded-full">
+            Terminal
+          </a>
+        </div>
+        <div class="hidden sm:block w-px h-4 bg-solana-purple/20"></div>
+        <SocialIcons links={SOCIAL_LINKS} />
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-6 pt-6 border-t border-solana-purple/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-mono text-[10px] text-muted-foreground/50 text-center sm:text-left">
+        Built with <span class="text-solana-green">Solana speed</span>. Powered by <span class="text-solana-purple">precision algorithms</span>.
+      </p>
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-[10px] text-muted-foreground/40">Powered by</span>
+        <div class="flex items-center gap-2">
+          <span class="footer-tech-badge px-2 py-1 rounded-full font-mono text-[10px] text-muted-foreground">Astro</span>
+          <span class="footer-tech-badge px-2 py-1 rounded-full font-mono text-[10px] text-muted-foreground">React</span>
+          <span class="footer-tech-badge-highlight px-2 py-1 rounded-full font-mono text-[10px] text-solana-purple">Solana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animated bottom glow -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-solana-green/50 to-transparent footer-bottom-glow"></div>
+</footer>
+
+<style>
+  /* Footer Container */
+  .footer-container {
+    background: linear-gradient(0deg, rgba(5, 5, 5, 0.98) 0%, rgba(15, 11, 21, 0.9) 100%);
+    border-top: 1px solid rgba(153, 69, 255, 0.15);
+  }
+
+  /* Glow lines */
+  .footer-glow-line {
+    animation: footerGlowPulse 4s ease-in-out infinite;
+  }
+
+  .footer-bottom-glow {
+    animation: footerGlowPulse 4s ease-in-out infinite 2s;
+  }
+
+  @keyframes footerGlowPulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Network status badge */
+  .footer-status {
+    background: rgba(20, 241, 149, 0.05);
+    border: 1px solid rgba(20, 241, 149, 0.2);
+  }
+
+  /* Links hover effect */
+  .footer-link {
+    position: relative;
+  }
+
+  .footer-link:hover {
+    background: rgba(153, 69, 255, 0.1);
+  }
+
+  /* Tech badges */
+  .footer-tech-badge {
+    background: rgba(15, 11, 21, 0.6);
+    border: 1px solid rgba(153, 69, 255, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .footer-tech-badge:hover {
+    border-color: rgba(153, 69, 255, 0.4);
+    box-shadow: 0 0 10px rgba(153, 69, 255, 0.2);
+  }
+
+  .footer-tech-badge-highlight {
+    background: rgba(153, 69, 255, 0.1);
+    border: 1px solid rgba(153, 69, 255, 0.3);
+    animation: techBadgeGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes techBadgeGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(153, 69, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(153, 69, 255, 0.4);
+    }
+  }
+
+  /* Badge shimmer */
+  .footer-badge {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(153, 69, 255, 0.3), transparent);
+    animation: badgeShimmer 3s infinite;
+  }
+
+  @keyframes badgeShimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Supporter cards */
+  .supporter-card {
+    transition: transform 0.3s ease;
+  }
+
+  .supporter-card:hover {
+    transform: translateY(-4px);
+  }
+</style>

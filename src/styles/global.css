@@ -1,0 +1,522 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme inline {
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  --font-sans:
+    'Rajdhani', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* Kana Dark Holographic Theme - Solana Inspired */
+  --color-background: #050505;
+  --color-foreground: #E0E0E0;
+
+  --color-primary: #9945FF;
+  --color-primary-foreground: #050505;
+
+  --color-muted: #0F0B15;
+  --color-muted-foreground: #8A8A95;
+
+  --color-additive: #14F195;
+  --color-additive-foreground: #050505;
+
+  --color-destructive: #FF2E2E;
+  --color-destructive-foreground: #E0E0E0;
+
+  --color-border: #1A1525;
+  --color-ring: #9945FF;
+
+  /* Kana Theme Colors - Solana Neon */
+  --color-solana-purple: #9945FF;
+  --color-solana-green: #14F195;
+  --color-chrome: #E0E0E0;
+  --color-gaze-red: #FF2E2E;
+  --color-gaze-orange: #FF5C00;
+  --color-card-bg: #0F0B15;
+  --color-void-black: #050505;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono[wght].woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Italic[wght].woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Kana Dark Holographic Theme - Solana Base */
+  --void-black: #050505;
+  --card-bg: #0F0B15;
+  --background: #050505;
+  --foreground: #E0E0E0;
+
+  /* Kana Solana Accent Colors */
+  --solana-purple: #9945FF;
+  --solana-green: #14F195;
+  --chrome: #E0E0E0;
+  --gaze-red: #FF2E2E;
+  --gaze-orange: #FF5C00;
+
+  /* Legacy compatibility aliases */
+  --warm-gold: #9945FF;
+  --soft-silver: #E0E0E0;
+  --cyan-glow: #14F195;
+  --warm-ivory: #E0E0E0;
+  --amber: #FF5C00;
+
+  /* Semantic Colors */
+  --primary: #9945FF;
+  --primary-foreground: #050505;
+  --muted: #0F0B15;
+  --muted-foreground: #8A8A95;
+  --destructive: #FF2E2E;
+  --additive: #14F195;
+  --additive-foreground: #050505;
+
+  /* Border & Ring */
+  --border: #1A1525;
+  --ring: #9945FF;
+
+  /* Gradient Border Colors - Solana Purple to Green */
+  --gradient-start: #9945FF;
+  --gradient-end: #14F195;
+
+  /* Chart colors - Solana gradient */
+  --chart-1: 263 100% 64%;
+  --chart-2: 280 90% 60%;
+  --chart-3: 300 80% 55%;
+  --chart-4: 140 90% 50%;
+  --chart-5: 155 95% 52%;
+  --chart-6: 160 100% 51%;
+  --chart-7: 162 91% 51%;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply border-border outline-ring/50 tracking-tight;
+  }
+}
+
+@layer components {
+  /* Gradient Border Card Component */
+  .bento-card {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(153, 69, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--solana-purple), var(--solana-green), transparent);
+    opacity: 0.5;
+  }
+
+  .bento-card:hover {
+    border-color: rgba(153, 69, 255, 0.5);
+    box-shadow:
+      0 0 30px rgba(153, 69, 255, 0.15),
+      0 0 60px rgba(20, 241, 149, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* New Kana Card Style */
+  .kana-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 11, 21, 0.95), rgba(5, 5, 5, 0.98));
+    border-radius: 16px;
+    border: 1px solid rgba(153, 69, 255, 0.15);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .kana-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--solana-purple), var(--solana-green), transparent);
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  .kana-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(153, 69, 255, 0.08), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .kana-card:hover {
+    border-color: rgba(153, 69, 255, 0.4);
+    box-shadow:
+      0 4px 30px rgba(153, 69, 255, 0.12),
+      0 8px 60px rgba(20, 241, 149, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    transform: translateY(-3px);
+  }
+
+  .kana-card:hover::before {
+    opacity: 0.8;
+  }
+
+  .kana-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Block Cursor Blink Effect for Navigation */
+  .nav-link {
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--solana-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link:hover .block-cursor {
+    animation: blink 0.8s step-end infinite;
+  }
+
+  .block-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    background: var(--solana-green);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    opacity: 0;
+  }
+
+  /* Typing Animation for Status */
+  .typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(30) infinite;
+  }
+
+  /* Status Indicator Pulse */
+  .status-online {
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  .status-congested {
+    animation: pulse-red 1s ease-in-out infinite;
+  }
+
+  /* Audio Waveform Animation */
+  .waveform-bar {
+    animation: waveform 1.2s ease-in-out infinite;
+  }
+
+  .waveform-bar:nth-child(1) { animation-delay: 0s; }
+  .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+  .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+  .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+  .waveform-bar:nth-child(5) { animation-delay: 0.4s; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes typing {
+  0%, 100% { width: 0; }
+  50% { width: 100%; }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(20, 241, 149, 0.7); }
+  50% { box-shadow: 0 0 0 6px rgba(20, 241, 149, 0); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+@keyframes waveform {
+  0%, 100% { height: 20%; }
+  50% { height: 100%; }
+}
+
+/* Code Badge Styling */
+.code-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(153, 69, 255, 0.15);
+  border: 1px solid rgba(153, 69, 255, 0.3);
+  border-radius: 4px;
+  color: var(--solana-purple);
+  transition: all 0.2s ease;
+}
+
+.code-badge:hover {
+  background: rgba(153, 69, 255, 0.25);
+  border-color: var(--solana-purple);
+  box-shadow: 0 0 10px rgba(153, 69, 255, 0.3);
+}
+
+/* Terminal-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--solana-purple);
+}
+
+/* Scanline effect for cyberpunk feel (subtle) */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* ========== GLOBAL ANIMATION UTILITIES ========== */
+
+/* Glow Effects */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(153, 69, 255, 0.3);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(20, 241, 149, 0.3);
+}
+
+.glow-purple-intense {
+  box-shadow: 0 0 30px rgba(153, 69, 255, 0.5), 0 0 60px rgba(153, 69, 255, 0.3);
+}
+
+.glow-green-intense {
+  box-shadow: 0 0 30px rgba(20, 241, 149, 0.5), 0 0 60px rgba(20, 241, 149, 0.3);
+}
+
+/* Animated Glow */
+.animate-glow-pulse {
+  animation: glowPulseGlobal 2s ease-in-out infinite;
+}
+
+@keyframes glowPulseGlobal {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(153, 69, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(153, 69, 255, 0.5), 0 0 45px rgba(20, 241, 149, 0.3);
+  }
+}
+
+/* Shimmer Effect */
+.animate-shimmer-global {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer-global::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmerGlobal 2.5s infinite;
+}
+
+@keyframes shimmerGlobal {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Border Gradient Animation */
+.border-gradient-animated {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 16px;
+}
+
+.border-gradient-animated::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(90deg, var(--solana-purple), var(--solana-green), var(--solana-purple));
+  background-size: 200% 100%;
+  animation: borderGradientMove 3s linear infinite;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes borderGradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Float Animation */
+.animate-float {
+  animation: floatGlobal 3s ease-in-out infinite;
+}
+
+@keyframes floatGlobal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Pulse Scale Animation */
+.animate-pulse-scale {
+  animation: pulseScaleGlobal 2s ease-in-out infinite;
+}
+
+@keyframes pulseScaleGlobal {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Gradient Text Animation */
+.text-gradient-animated {
+  background: linear-gradient(90deg, var(--solana-purple), var(--chrome), var(--solana-green), var(--solana-purple));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textGradientShift 4s ease-in-out infinite;
+}
+
+@keyframes textGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glassmorphism Base */
+.glass {
+  background: rgba(15, 11, 21, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(153, 69, 255, 0.15);
+}
+
+.glass-dark {
+  background: rgba(5, 5, 5, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(153, 69, 255, 0.2);
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(153, 69, 255, 0.15);
+}
+
+/* Neon Text */
+.neon-purple {
+  color: var(--solana-purple);
+  text-shadow: 0 0 10px rgba(153, 69, 255, 0.5), 0 0 20px rgba(153, 69, 255, 0.3);
+}
+
+.neon-green {
+  color: var(--solana-green);
+  text-shadow: 0 0 10px rgba(20, 241, 149, 0.5), 0 0 20px rgba(20, 241, 149, 0.3);
+}
+
+/* Gradient Border on Hover */
+.gradient-border-hover {
+  position: relative;
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+}
+
+.gradient-border-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border-hover:hover::before {
+  opacity: 1;
+}
+
+/* Status Badges */
+.badge-online {
+  background: rgba(20, 241, 149, 0.1);
+  border: 1px solid rgba(20, 241, 149, 0.3);
+  color: var(--solana-green);
+}
+
+.badge-purple {
+  background: rgba(153, 69, 255, 0.1);
+  border: 1px solid rgba(153, 69, 255, 0.3);
+  color: var(--solana-purple);
+}

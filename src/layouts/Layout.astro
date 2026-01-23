@@ -1,0 +1,55 @@
+---
+import '@/styles/global.css'
+import '@/styles/typography.css'
+
+import Footer from '@/components/Footer.astro'
+import Head from '@/components/Head.astro'
+import Header from '@/components/Header.astro'
+import { SITE } from '@/consts'
+import { cn } from '@/lib/utils'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<!doctype html>
+<html
+  class="bg-background text-foreground scheme-dark"
+  lang={SITE.locale}
+  data-theme="dark"
+  style="background-color: #0A0A0F; color: #F5F0E8;"
+>
+  <Head>
+    <slot name="head" />
+    <style is:inline>
+      html, body {
+        background-color: #0A0A0F !important;
+        color: #F5F0E8 !important;
+        min-height: 100vh;
+      }
+      .bento-card {
+        position: relative;
+        background: #0F0F14;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #252530;
+      }
+    </style>
+  </Head>
+  <body style="background-color: #0A0A0F; color: #F5F0E8;">
+    <div class="flex h-fit min-h-screen flex-col font-mono">
+      <Header />
+      <slot name="subposts-navigation" />
+      <slot name="table-of-contents" />
+      <main class="grow">
+        <div class={cn('mx-auto flex grow flex-col px-4', className)}>
+          <slot />
+        </div>
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+---
+import KanaTerminal from '@/components/bento/KanaTerminal'
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout class="max-w-4xl">
+  <PageHead slot="head" title="Chat with KANA" />
+  <Breadcrumbs
+    items={[
+      { label: 'Chat', href: '/chat', icon: 'lucide:terminal' },
+    ]}
+  />
+
+  <!-- Terminal Introduction -->
+  <div class="mb-6">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="size-10 rounded-xl overflow-hidden border-2 border-solana-purple/30 bg-gradient-to-br from-solana-purple/20 to-solana-green/20">
+        <img
+          src="/kana-logo.png"
+          alt="KANA"
+          class="size-full object-cover"
+        />
+      </div>
+      <div>
+        <h1 class="font-mono text-xl font-bold text-foreground">KANA Terminal</h1>
+        <p class="font-mono text-[10px] text-muted-foreground/70">Solana Speed Demon</p>
+        <p class="font-mono text-xs text-muted-foreground">High-Speed Trading Interface</p>
+      </div>
+    </div>
+    <p class="font-sans text-sm text-muted-foreground max-w-2xl">
+      Connect with KANA, the embodiment of Solana's High-Speed Network. Execute trades, scan volatility, or explore the world of high-speed blockchain trading.
+    </p>
+  </div>
+
+  <!-- Quick Commands -->
+  <div class="mb-6 flex flex-wrap gap-2">
+    <span class="font-mono text-xs text-muted-foreground">Quick commands:</span>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/status">
+      /status
+    </button>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/about">
+      /about
+    </button>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/stats">
+      /stats
+    </button>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/whoami">
+      /whoami
+    </button>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/roast">
+      /roast
+    </button>
+    <button class="code-badge cursor-pointer hover:bg-warm-gold/25 transition-colors" data-command="/help">
+      /help
+    </button>
+  </div>
+
+  <!-- Terminal Component -->
+  <div class="min-h-[500px]">
+    <KanaTerminal client:load />
+  </div>
+
+  <!-- Info Cards -->
+  <div class="mt-8 grid gap-4 sm:grid-cols-3">
+    <div class="bento-card p-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-warm-gold">✦</span>
+        <span class="font-mono text-sm font-medium text-foreground">Divine Wisdom</span>
+      </div>
+      <p class="font-sans text-xs text-muted-foreground">
+        Access the sacred knowledge repositories through natural language queries.
+      </p>
+    </div>
+    <div class="bento-card p-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-cyan-glow">◈</span>
+        <span class="font-mono text-sm font-medium text-foreground">Always Online</span>
+      </div>
+      <p class="font-sans text-xs text-muted-foreground">
+        KANA maintains eternal vigilance, ready to assist at any moment.
+      </p>
+    </div>
+    <div class="bento-card p-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-amber">⚡</span>
+        <span class="font-mono text-sm font-medium text-foreground">Instant Response</span>
+      </div>
+      <p class="font-sans text-xs text-muted-foreground">
+        Experience lightning-fast divine processing powered by ethereal algorithms.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Quick command buttons
+  document.querySelectorAll('[data-command]').forEach(button => {
+    button.addEventListener('click', () => {
+      const command = button.getAttribute('data-command')
+      const input = document.querySelector('input[type="text"]') as HTMLInputElement
+      if (input && command) {
+        input.value = command
+        input.focus()
+        // Trigger input change event
+        input.dispatchEvent(new Event('input', { bubbles: true }))
+      }
+    })
+  })
+</script>

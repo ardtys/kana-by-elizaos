@@ -1,0 +1,497 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout>
+  <PageHead slot="head" title="Documentation" />
+
+  <div class="mx-auto w-full max-w-[calc(var(--container-3xl)-2rem)]">
+    <Breadcrumbs
+      items={[
+        { label: 'Docs', href: '/docs', icon: 'lucide:book-open' },
+      ]}
+    />
+  </div>
+
+  <section class="mx-auto flex max-w-[calc(var(--container-3xl)-2rem)] flex-col gap-6">
+    <!-- Hero Section -->
+    <div class="mb-2">
+    <div class="flex items-center gap-4 mb-4">
+      <div class="size-16 rounded-2xl overflow-hidden border-2 border-solana-purple/30 bg-gradient-to-br from-solana-purple/20 to-solana-green/20 p-1">
+        <img
+          src="/kana-logo.png"
+          alt="KANA"
+          class="size-full object-cover rounded-xl"
+        />
+      </div>
+      <div>
+        <h1 class="font-mono text-3xl font-bold text-foreground mb-1">KANA Documentation</h1>
+        <p class="font-mono text-xs text-muted-foreground/70 mb-1">Solana Speed Demon</p>
+        <p class="font-mono text-sm text-muted-foreground">High-Speed Trading • Knowledge Base • Developer Resources</p>
+      </div>
+    </div>
+    <p class="font-sans text-muted-foreground max-w-3xl">
+      Welcome to the KANA documentation. Learn about the project, explore our vision, and access developer resources for building with high-speed intelligence.
+    </p>
+  </div>
+
+  <!-- Quick Navigation -->
+  <div class="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <a href="#about" class="bento-card group p-4 hover:border-warm-gold/50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-warm-gold/10">
+          <Icon name="lucide:sparkles" class="text-warm-gold size-5" />
+        </div>
+        <div>
+          <div class="font-mono text-sm font-medium text-foreground group-hover:text-warm-gold transition-colors">About</div>
+          <div class="font-mono text-xs text-muted-foreground">Project Overview</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="#vision" class="bento-card group p-4 hover:border-cyan-glow/50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-cyan-glow/10">
+          <Icon name="lucide:target" class="text-cyan-glow size-5" />
+        </div>
+        <div>
+          <div class="font-mono text-sm font-medium text-foreground group-hover:text-cyan-glow transition-colors">Vision</div>
+          <div class="font-mono text-xs text-muted-foreground">Roadmap & Goals</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="#developer" class="bento-card group p-4 hover:border-warm-gold/50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-amber/10">
+          <Icon name="lucide:code-2" class="text-amber size-5" />
+        </div>
+        <div>
+          <div class="font-mono text-sm font-medium text-foreground group-hover:text-amber transition-colors">Developer</div>
+          <div class="font-mono text-xs text-muted-foreground">API & Resources</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="#community" class="bento-card group p-4 hover:border-cyan-glow/50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-soft-silver/10">
+          <Icon name="lucide:users" class="text-soft-silver size-5" />
+        </div>
+        <div>
+          <div class="font-mono text-sm font-medium text-foreground group-hover:text-soft-silver transition-colors">Community</div>
+          <div class="font-mono text-xs text-muted-foreground">Connect & Support</div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- About KANA Section -->
+  <section id="about" class="mb-16">
+    <h2 class="font-mono text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+      <Icon name="lucide:sparkles" class="text-solana-purple size-6" />
+      About KANA
+    </h2>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="bento-card p-6">
+        <h3 class="font-mono text-lg font-semibold text-solana-purple mb-3">◈ What is KANA?</h3>
+        <div class="space-y-3 font-sans text-sm text-muted-foreground">
+          <p>
+            KANA is the embodiment of Solana's High-Speed Network, built to bridge the gap between blockchain trading and precision execution.
+          </p>
+          <p>
+            We exist at the intersection of blockchain technology, artificial intelligence, and high-speed trading. KANA specializes in:
+          </p>
+          <ul class="space-y-2 ml-4">
+            <li class="flex items-start gap-2">
+              <span class="text-warm-gold mt-1">•</span>
+              <span><strong class="text-foreground">Solana Ecosystem:</strong> Deep expertise in SVM, Jito, Jupiter, and DeFi protocols</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-glow mt-1">•</span>
+              <span><strong class="text-foreground">Security Education:</strong> Teaching best practices for wallet security and scam prevention</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber mt-1">•</span>
+              <span><strong class="text-foreground">Developer Culture:</strong> Understanding and embracing the memes, humor, and reality of building</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bento-card p-6">
+        <h3 class="font-mono text-lg font-semibold text-cyan-glow mb-3">⚡ Core Features</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-warm-gold/10 mt-0.5">
+              <Icon name="lucide:brain" class="text-warm-gold size-4" />
+            </div>
+            <div>
+              <div class="font-mono text-sm font-medium text-foreground mb-1">AI-Powered Terminal</div>
+              <p class="font-sans text-xs text-muted-foreground">Chat interface with comprehensive knowledge base covering Solana, security, dev humor, and more.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-cyan-glow/10 mt-0.5">
+              <Icon name="lucide:zap" class="text-cyan-glow size-4" />
+            </div>
+            <div>
+              <div class="font-mono text-sm font-medium text-foreground mb-1">Real-time Insights</div>
+              <p class="font-sans text-xs text-muted-foreground">Up-to-date information on market trends, protocol updates, and ecosystem developments.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-amber/10 mt-0.5">
+              <Icon name="lucide:shield-check" class="text-amber size-4" />
+            </div>
+            <div>
+              <div class="font-mono text-sm font-medium text-foreground mb-1">Security First</div>
+              <p class="font-sans text-xs text-muted-foreground">Educational content focused on keeping users safe from phishing, scams, and common pitfalls.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Roadmap -->
+  <section id="vision" class="mb-16">
+    <h2 class="font-mono text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+      <Icon name="lucide:target" class="text-cyan-glow size-6" />
+      Vision & Roadmap
+    </h2>
+
+    <div class="bento-card p-6 mb-6">
+      <h3 class="font-mono text-lg font-semibold text-warm-gold mb-4">✦ Our Mission</h3>
+      <p class="font-sans text-muted-foreground mb-4">
+        To democratize access to Web3 knowledge and empower the next generation of blockchain builders, traders, and enthusiasts through divine intelligence and community-driven education.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="rounded-lg border border-warm-gold/20 bg-warm-gold/5 p-4">
+          <div class="font-mono text-xs text-warm-gold uppercase tracking-wider mb-2">Accessibility</div>
+          <p class="font-sans text-xs text-muted-foreground">Make complex blockchain concepts understandable for everyone</p>
+        </div>
+        <div class="rounded-lg border border-cyan-glow/20 bg-cyan-glow/5 p-4">
+          <div class="font-mono text-xs text-cyan-glow uppercase tracking-wider mb-2">Education</div>
+          <p class="font-sans text-xs text-muted-foreground">Provide accurate, up-to-date information on Solana and Web3</p>
+        </div>
+        <div class="rounded-lg border border-amber/20 bg-amber/5 p-4">
+          <div class="font-mono text-xs text-amber uppercase tracking-wider mb-2">Security</div>
+          <p class="font-sans text-xs text-muted-foreground">Protect users through education and awareness</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="bento-card p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="flex size-8 items-center justify-center rounded-lg bg-warm-gold/10">
+            <span class="font-mono text-sm text-warm-gold font-bold">Q1</span>
+          </div>
+          <h3 class="font-mono text-sm font-semibold text-foreground">Foundation</h3>
+        </div>
+        <ul class="space-y-2 font-sans text-xs text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:check" class="text-warm-gold size-3 mt-0.5 shrink-0" />
+            <span>Launch KANA Terminal</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:check" class="text-warm-gold size-3 mt-0.5 shrink-0" />
+            <span>Build knowledge base</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>Community building</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bento-card p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="flex size-8 items-center justify-center rounded-lg bg-cyan-glow/10">
+            <span class="font-mono text-sm text-cyan-glow font-bold">Q2</span>
+          </div>
+          <h3 class="font-mono text-sm font-semibold text-foreground">Expansion</h3>
+        </div>
+        <ul class="space-y-2 font-sans text-xs text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>API access for developers</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>Advanced AI capabilities</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>Multi-chain support</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bento-card p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="flex size-8 items-center justify-center rounded-lg bg-amber/10">
+            <span class="font-mono text-sm text-amber font-bold">Q3</span>
+          </div>
+          <h3 class="font-mono text-sm font-semibold text-foreground">Integration</h3>
+        </div>
+        <ul class="space-y-2 font-sans text-xs text-muted-foreground">
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>Wallet integration</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>On-chain data analysis</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:circle" class="text-muted-foreground/30 size-3 mt-0.5 shrink-0" />
+            <span>DAO governance</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Resources -->
+  <section id="developer" class="mb-16">
+    <h2 class="font-mono text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+      <Icon name="lucide:code-2" class="text-amber size-6" />
+      Developer Resources
+    </h2>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="bento-card p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="flex size-10 items-center justify-center rounded-lg bg-warm-gold/10">
+            <Icon name="lucide:book-open" class="text-warm-gold size-5" />
+          </div>
+          <h3 class="font-mono text-lg font-semibold text-foreground">Documentation</h3>
+        </div>
+        <p class="font-sans text-sm text-muted-foreground mb-4">
+          Comprehensive guides for integrating KANA into your projects.
+        </p>
+        <div class="space-y-2">
+          <a href="/docs/getting-started" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-warm-gold/50 transition-colors group">
+            <div class="flex items-center gap-2">
+              <Icon name="lucide:arrow-right" class="text-warm-gold size-4" />
+              <span class="font-mono text-sm text-foreground group-hover:text-warm-gold transition-colors">Getting Started</span>
+            </div>
+            <Icon name="lucide:chevron-right" class="text-muted-foreground size-3" />
+          </a>
+          <a href="/docs/api-reference" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-warm-gold/50 transition-colors group">
+            <div class="flex items-center gap-2">
+              <Icon name="lucide:arrow-right" class="text-warm-gold size-4" />
+              <span class="font-mono text-sm text-foreground group-hover:text-warm-gold transition-colors">API Reference</span>
+            </div>
+            <Icon name="lucide:chevron-right" class="text-muted-foreground size-3" />
+          </a>
+          <a href="/docs/code-examples" class="flex items-center justify-between p-3 rounded-lg border border-border hover:border-warm-gold/50 transition-colors group">
+            <div class="flex items-center gap-2">
+              <Icon name="lucide:arrow-right" class="text-warm-gold size-4" />
+              <span class="font-mono text-sm text-foreground group-hover:text-warm-gold transition-colors">Code Examples</span>
+            </div>
+            <Icon name="lucide:chevron-right" class="text-muted-foreground size-3" />
+          </a>
+        </div>
+      </div>
+
+      <div class="bento-card p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="flex size-10 items-center justify-center rounded-lg bg-cyan-glow/10">
+            <Icon name="lucide:terminal" class="text-cyan-glow size-5" />
+          </div>
+          <h3 class="font-mono text-lg font-semibold text-foreground">Quick Start</h3>
+        </div>
+        <p class="font-sans text-sm text-muted-foreground mb-4">
+          Get KANA running in your project in minutes.
+        </p>
+        <div class="rounded-lg bg-void-black border border-border p-4">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex gap-1.5">
+              <div class="size-2.5 rounded-full bg-destructive/70"></div>
+              <div class="size-2.5 rounded-full bg-amber/70"></div>
+              <div class="size-2.5 rounded-full bg-cyan-glow/70"></div>
+            </div>
+            <span class="font-mono text-xs text-muted-foreground">terminal</span>
+          </div>
+          <div class="font-mono text-xs space-y-1">
+            <div class="text-muted-foreground"># Install KANA SDK</div>
+            <div class="text-solana-green">npm install @kana/sdk</div>
+            <div class="mt-2 text-muted-foreground"># Initialize</div>
+            <div class="text-solana-purple">npx kana init</div>
+            <div class="mt-2 text-muted-foreground"># Start trading</div>
+            <div class="text-foreground">kana.execute("scan")</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="mt-6 bento-card p-6">
+      <h3 class="font-mono text-lg font-semibold text-warm-gold mb-4">🛠️ Built With</h3>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-card-bg">
+          <Icon name="lucide:rocket" class="text-warm-gold size-5" />
+          <div>
+            <div class="font-mono text-sm font-medium text-foreground">Astro</div>
+            <div class="font-mono text-xs text-muted-foreground">Framework</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-card-bg">
+          <Icon name="lucide:layers" class="text-cyan-glow size-5" />
+          <div>
+            <div class="font-mono text-sm font-medium text-foreground">React</div>
+            <div class="font-mono text-xs text-muted-foreground">UI Components</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-card-bg">
+          <Icon name="lucide:palette" class="text-amber size-5" />
+          <div>
+            <div class="font-mono text-sm font-medium text-foreground">Tailwind</div>
+            <div class="font-mono text-xs text-muted-foreground">Styling</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-card-bg">
+          <Icon name="lucide:cpu" class="text-soft-silver size-5" />
+          <div>
+            <div class="font-mono text-sm font-medium text-foreground">TypeScript</div>
+            <div class="font-mono text-xs text-muted-foreground">Language</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community & Support -->
+  <section id="community" class="mb-16">
+    <h2 class="font-mono text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+      <Icon name="lucide:users" class="text-soft-silver size-6" />
+      Community & Support
+    </h2>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="https://github.com/ardtys/kana-by-elizaos" target="_blank" class="bento-card group p-6 hover:border-warm-gold/50 transition-colors">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-warm-gold/10 group-hover:bg-warm-gold/20 transition-colors">
+            <Icon name="mdi:github" class="text-warm-gold size-6" />
+          </div>
+          <div>
+            <h3 class="font-mono text-base font-semibold text-foreground group-hover:text-warm-gold transition-colors">GitHub</h3>
+            <p class="font-mono text-xs text-muted-foreground">Open Source</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-muted-foreground">
+          Contribute to KANA's development. Star, fork, and submit PRs.
+        </p>
+      </a>
+
+      <a href="https://x.com/ai16zkana" target="_blank" class="bento-card group p-6 hover:border-cyan-glow/50 transition-colors">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-cyan-glow/10 group-hover:bg-cyan-glow/20 transition-colors">
+            <Icon name="mdi:twitter" class="text-cyan-glow size-6" />
+          </div>
+          <div>
+            <h3 class="font-mono text-base font-semibold text-foreground group-hover:text-cyan-glow transition-colors">Twitter/X</h3>
+            <p class="font-mono text-xs text-muted-foreground">Updates & News</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-muted-foreground">
+          Follow for announcements, tips, and community highlights.
+        </p>
+      </a>
+
+      <a href="/chat" class="bento-card group p-6 hover:border-amber/50 transition-colors">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-amber/10 group-hover:bg-amber/20 transition-colors">
+            <Icon name="lucide:message-circle" class="text-amber size-6" />
+          </div>
+          <div>
+            <h3 class="font-mono text-base font-semibold text-foreground group-hover:text-amber transition-colors">Chat</h3>
+            <p class="font-mono text-xs text-muted-foreground">Talk to KANA</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-muted-foreground">
+          Ask questions directly to KANA. Get instant divine wisdom.
+        </p>
+      </a>
+    </div>
+
+    <!-- FAQ Preview -->
+    <div class="mt-6 bento-card p-6">
+      <h3 class="font-mono text-lg font-semibold text-warm-gold mb-4">❓ Frequently Asked Questions</h3>
+      <div class="space-y-4">
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between font-mono text-sm text-foreground hover:text-warm-gold transition-colors">
+            <span>Is KANA open source?</span>
+            <Icon name="lucide:chevron-down" class="size-4 transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="mt-2 font-sans text-sm text-muted-foreground pl-4">
+            Yes! KANA is fully open source. Check out our GitHub repository to explore the code, contribute, or build your own divine agent.
+          </p>
+        </details>
+
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between font-mono text-sm text-foreground hover:text-warm-gold transition-colors">
+            <span>How accurate is KANA's knowledge?</span>
+            <Icon name="lucide:chevron-down" class="size-4 transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="mt-2 font-sans text-sm text-muted-foreground pl-4">
+            KANA's knowledge base is curated and regularly updated. However, always DYOR (Do Your Own Research) for critical decisions, especially financial ones.
+          </p>
+        </details>
+
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between font-mono text-sm text-foreground hover:text-warm-gold transition-colors">
+            <span>Can I use KANA in my project?</span>
+            <Icon name="lucide:chevron-down" class="size-4 transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="mt-2 font-sans text-sm text-muted-foreground pl-4">
+            Absolutely! Check the Developer Resources section for integration guides and API documentation.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <div class="mb-12 bento-card p-8 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h2 class="font-mono text-2xl font-bold text-foreground mb-3">Ready to dive in?</h2>
+      <p class="font-sans text-muted-foreground mb-6">
+        Start chatting with KANA or explore our knowledge base. The divine realm awaits.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/chat"
+          class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-warm-gold to-cyan-glow px-6 py-3 font-mono text-sm font-medium text-void-black hover:opacity-90 transition-opacity"
+        >
+          <Icon name="lucide:message-circle" class="size-4" />
+          Chat with KANA
+        </a>
+        <a
+          href="https://github.com/ardtys/kana-by-elizaos"
+          target="_blank"
+          class="inline-flex items-center gap-2 rounded-lg border border-border bg-card-bg px-6 py-3 font-mono text-sm font-medium text-foreground hover:border-warm-gold/50 transition-colors"
+        >
+          <Icon name="mdi:github" class="size-4" />
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+  </section>
+</Layout>
+
+<style>
+  details[open] summary {
+    margin-bottom: 0.5rem;
+  }
+</style>

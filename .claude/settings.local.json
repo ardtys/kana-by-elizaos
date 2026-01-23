@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro dev --port 1234)",
+      "Bash(del \"c:\\\\Users\\\\WINDOWS10\\\\Desktop\\\\AURA\\\\public\\\\favicon.svg\")",
+      "Bash(curl:*)",
+      "Bash(npx astro:*)",
+      "Bash(where:*)",
+      "Bash(copy \"c:\\\\Users\\\\WINDOWS10\\\\Desktop\\\\AURA\\\\public\\\\aura-logo.png\" \"c:\\\\Users\\\\WINDOWS10\\\\Desktop\\\\AURA\\\\public\\\\apple-touch-icon.png\")",
+      "Bash(copy \"c:\\\\Users\\\\WINDOWS10\\\\Desktop\\\\AURA\\\\public\\\\aura-logo.png\" \"c:\\\\Users\\\\WINDOWS10\\\\Desktop\\\\AURA\\\\public\\\\web-app-manifest-192x192.png\")",
+      "Bash(copy:*)",
+      "Bash(npm run build:*)",
+      "Bash(if exist distclient echo \"Client build exists\")",
+      "Bash(if exist distserver echo \"Server build exists\")",
+      "Bash(dir:*)",
+      "Bash(grep:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run preview:*)",
+      "Bash(findstr:*)",
+      "Bash(find .vercel/output/static/_astro -name \"*.css\" -exec echo \"=== {} ===\" ; -exec head -50 {} ;)",
+      "Bash(cat:*)",
+      "Bash(del \"C:\\\\Users\\\\Daffa\\\\OneDrive\\\\Desktop\\\\aura-main\\\\src\\\\components\\\\bento\\\\AuraTerminal.tsx\")",
+      "Bash(npm run)"
+    ]
+  }
+}

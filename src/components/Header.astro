@@ -1,0 +1,256 @@
+---
+import Link from '@/components/Link.astro'
+import { NAV_LINKS } from '@/consts'
+import { cn } from '@/lib/utils'
+---
+
+<header class="header-container sticky top-0 z-50">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
+    <!-- Left: Logo / Brand -->
+    <Link href="/" class="header-logo-group flex items-center gap-2 sm:gap-3 group shrink-0">
+      <!-- Logo Container with glow -->
+      <div class="relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-solana-purple to-solana-green rounded-full blur-md opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
+        <div class="relative size-8 sm:size-9 rounded-full overflow-hidden border-2 border-solana-purple/50 group-hover:border-solana-purple group-hover:shadow-[0_0_20px_rgba(153,69,255,0.5)] transition-all duration-300">
+          <img
+            src="/kana-logo.png"
+            alt="KANA"
+            class="size-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        </div>
+        <!-- Online Indicator with pulse -->
+        <div class="absolute -bottom-0.5 -right-0.5 size-2 sm:size-2.5">
+          <span class="absolute inset-0 rounded-full bg-solana-green animate-ping opacity-75"></span>
+          <span class="relative block size-full rounded-full bg-solana-green border-2 border-background"></span>
+        </div>
+      </div>
+
+      <!-- Brand Text - Hidden on very small screens -->
+      <div class="hidden xs:flex items-center gap-1.5 sm:gap-2">
+        <span class="font-mono text-sm sm:text-base font-black tracking-tight bg-gradient-to-r from-solana-purple via-white to-solana-green bg-clip-text text-transparent">
+          KANA
+        </span>
+        <span class="header-badge hidden sm:inline-flex font-mono text-[8px] sm:text-[9px] text-solana-purple/80 px-1.5 sm:px-2 py-0.5 rounded-full bg-solana-purple/10 border border-solana-purple/30">
+          ElizaOS
+        </span>
+      </div>
+    </Link>
+
+    <!-- Center: Navigation - Desktop only -->
+    <nav class="hidden md:flex items-center justify-center gap-1 absolute left-1/2 -translate-x-1/2">
+      {
+        NAV_LINKS.map((item) => (
+          <Link
+            href={item.href}
+            class="relative px-3 lg:px-4 py-2 font-mono text-sm text-muted-foreground hover:text-foreground transition-all duration-300 group"
+            external={item.href.startsWith('http')}
+          >
+            <span class="relative z-10">{item.label}</span>
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-solana-purple to-solana-green group-hover:w-full transition-all duration-300"></div>
+          </Link>
+        ))
+      }
+    </nav>
+
+    <!-- Right: Actions -->
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <!-- Network Status - Desktop only -->
+      <div class="hidden lg:flex header-status items-center gap-2 px-3 py-1.5 rounded-full">
+        <span class="relative flex size-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-solana-green opacity-75"></span>
+          <span class="relative inline-flex rounded-full size-2 bg-solana-green"></span>
+        </span>
+        <span class="font-mono text-xs text-solana-green font-semibold tracking-wide">ONLINE</span>
+      </div>
+
+      <!-- Chat with Kana Button -->
+      <a
+        href="https://www.elizacloud.ai/dashboard/chat?characterId=8c6773f7-9cdf-4b2f-908f-b472dcf5fbc2"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-cta group relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full overflow-hidden font-mono text-[10px] sm:text-xs font-bold text-void-black transition-all duration-300 hover:scale-105"
+      >
+        <span class="absolute inset-0 bg-gradient-to-r from-solana-purple to-solana-green"></span>
+        <span class="absolute inset-0 bg-gradient-to-r from-solana-green to-solana-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <svg class="relative z-10 size-3.5 sm:size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <span class="relative z-10 hidden sm:inline">Chat</span>
+        <span class="relative z-10 hidden lg:inline">with Kana</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden header-mobile-btn flex items-center justify-center size-8 sm:size-9 rounded-full text-muted-foreground hover:text-foreground transition-all duration-300"
+        aria-label="Toggle menu"
+      >
+        <svg id="menu-icon-open" class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="size-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu hidden md:hidden">
+    <nav class="flex flex-col p-4 gap-1">
+      {
+        NAV_LINKS.map((item) => (
+          <Link
+            href={item.href}
+            class="mobile-nav-item flex items-center justify-between px-4 py-3 rounded-xl font-mono text-sm text-muted-foreground hover:text-foreground transition-all duration-300"
+            external={item.href.startsWith('http')}
+          >
+            <span>{item.label}</span>
+            <svg class="size-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        ))
+      }
+
+      <!-- Mobile: Network Status -->
+      <div class="flex items-center justify-between px-4 py-3 mt-2 rounded-xl bg-solana-green/5 border border-solana-green/20">
+        <span class="font-mono text-xs text-muted-foreground">Network Status</span>
+        <div class="flex items-center gap-2">
+          <span class="relative flex size-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-solana-green opacity-75"></span>
+            <span class="relative inline-flex rounded-full size-2 bg-solana-green"></span>
+          </span>
+          <span class="font-mono text-xs text-solana-green font-semibold">ONLINE</span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Header Container */
+  .header-container {
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(153, 69, 255, 0.15);
+  }
+
+  /* Network status badge */
+  .header-status {
+    background: rgba(20, 241, 149, 0.08);
+    border: 1px solid rgba(20, 241, 149, 0.25);
+  }
+
+  /* CTA Button glow effect */
+  .header-cta {
+    box-shadow: 0 0 15px rgba(153, 69, 255, 0.3);
+  }
+
+  .header-cta:hover {
+    box-shadow: 0 0 25px rgba(153, 69, 255, 0.5), 0 0 40px rgba(20, 241, 149, 0.3);
+  }
+
+  /* Mobile button */
+  .header-mobile-btn {
+    background: rgba(15, 11, 21, 0.6);
+    border: 1px solid rgba(153, 69, 255, 0.2);
+  }
+
+  .header-mobile-btn:hover {
+    border-color: rgba(153, 69, 255, 0.5);
+    background: rgba(153, 69, 255, 0.1);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    background: rgba(5, 5, 5, 0.98);
+    border-top: 1px solid rgba(153, 69, 255, 0.1);
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-nav-item {
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .mobile-nav-item:hover {
+    background: rgba(153, 69, 255, 0.1);
+    border-color: rgba(153, 69, 255, 0.2);
+  }
+
+  .mobile-nav-item:active {
+    background: rgba(153, 69, 255, 0.15);
+  }
+
+  /* Badge shimmer effect */
+  .header-badge {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(153, 69, 255, 0.3), transparent);
+    animation: badgeShimmer 3s infinite;
+  }
+
+  @keyframes badgeShimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Custom breakpoint for extra small screens */
+  @media (min-width: 375px) {
+    .xs\:flex {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const menuIconOpen = document.getElementById('menu-icon-open')
+  const menuIconClose = document.getElementById('menu-icon-close')
+
+  mobileMenuButton?.addEventListener('click', () => {
+    const isHidden = mobileMenu?.classList.toggle('hidden')
+
+    // Toggle icons
+    if (isHidden) {
+      menuIconOpen?.classList.remove('hidden')
+      menuIconClose?.classList.add('hidden')
+    } else {
+      menuIconOpen?.classList.add('hidden')
+      menuIconClose?.classList.remove('hidden')
+    }
+  })
+
+  // Close menu when clicking on a link
+  const mobileNavLinks = mobileMenu?.querySelectorAll('a')
+  mobileNavLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden')
+      menuIconOpen?.classList.remove('hidden')
+      menuIconClose?.classList.add('hidden')
+    })
+  })
+</script>

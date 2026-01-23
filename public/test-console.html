@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Console Test</title>
+</head>
+<body>
+    <h1>Check Console</h1>
+    <script>
+        console.log('Test page loaded');
+        console.log('Window location:', window.location.href);
+
+        // Check for errors
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Error: ', msg, url, lineNo, columnNo, error);
+            return false;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import TestComponent from '@/components/TestComponent'
+import ProfileCard from '@/components/bento/ProfileCard'
+---
+
+<Layout>
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold text-warm-gold mb-8">Test Page - Debug Mode</h1>
+
+    <!-- Test 1: Simple HTML -->
+    <div class="bento-card p-6 mb-4">
+      <h2 class="text-xl text-foreground">✅ Test 1: Static HTML</h2>
+      <p class="text-muted-foreground">If you see this, HTML rendering works!</p>
+    </div>
+
+    <!-- Test 2: Simple React Component -->
+    <div class="mb-4">
+      <h2 class="text-xl text-warm-gold mb-2">Test 2: Simple React Component</h2>
+      <TestComponent client:load />
+    </div>
+
+    <!-- Test 3: ProfileCard Component -->
+    <div class="mb-4">
+      <h2 class="text-xl text-warm-gold mb-2">Test 3: ProfileCard Component</h2>
+      <ProfileCard client:load />
+    </div>
+
+    <!-- Test 3: Simple inline text -->
+    <div class="bento-card p-6">
+      <h2 class="text-xl text-cyan-glow">Test 3: CSS Classes</h2>
+      <p class="text-warm-gold">Warm Gold Text</p>
+      <p class="text-cyan-glow">Cyan Glow Text</p>
+      <p class="text-foreground">Foreground Text</p>
+    </div>
+  </div>
+</Layout>

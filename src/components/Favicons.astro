@@ -1,0 +1,12 @@
+---
+// Add cache buster to force favicon refresh
+const cacheBuster = Date.now()
+---
+<link rel="icon" type="image/png" href={`/kana-logo.png?v=${cacheBuster}`} />
+<link rel="icon" type="image/png" href={`/kana-logo.png?v=${cacheBuster}`} sizes="96x96" />
+<link rel="icon" type="image/png" href={`/kana-logo.png?v=${cacheBuster}`} sizes="32x32" />
+<link rel="icon" type="image/png" href={`/kana-logo.png?v=${cacheBuster}`} sizes="16x16" />
+<link rel="shortcut icon" href={`/kana-logo.png?v=${cacheBuster}`} />
+<link rel="apple-touch-icon" sizes="180x180" href={`/kana-logo.png?v=${cacheBuster}`} />
+<meta name="apple-mobile-web-app-title" content="KANA" />
+<link rel="manifest" href={`/site.webmanifest?v=${cacheBuster}`} />

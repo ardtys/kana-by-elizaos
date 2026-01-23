@@ -1,0 +1,409 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout>
+  <PageHead slot="head" title="Code Examples - Documentation" />
+
+  <div class="mx-auto w-full max-w-[calc(var(--container-3xl)-2rem)]">
+    <Breadcrumbs
+      items={[
+        { label: 'Docs', href: '/docs', icon: 'lucide:book-open' },
+        { label: 'Code Examples', icon: 'lucide:code-2' },
+      ]}
+    />
+  </div>
+
+  <section class="mx-auto flex max-w-[calc(var(--container-3xl)-2rem)] flex-col gap-6">
+    <!-- Header -->
+    <div>
+      <h1 class="font-mono text-3xl font-bold text-foreground mb-2">Code Examples</h1>
+      <p class="font-sans text-muted-foreground">
+        Real-world examples and use cases for integrating KANA into your applications.
+      </p>
+    </div>
+
+    <!-- Basic Chat Example -->
+    <div class="bento-card p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-warm-gold/10">
+          <Icon name="lucide:message-circle" class="text-warm-gold size-5" />
+        </div>
+        <h2 class="font-mono text-xl font-semibold text-foreground">Basic Chat Interface</h2>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        Create a simple chat interface with KANA in React:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-muted-foreground">React Component</span>
+          <button class="code-badge hover:bg-warm-gold/25 transition-colors cursor-pointer">Copy</button>
+        </div>
+        <pre class="font-mono text-xs text-foreground overflow-x-auto"><code>{`import { useState } from 'react'
+import { Kana } from '@kana/sdk'
+
+const kana = new Kana({ apiKey: process.env.REACT_APP_KANA_KEY })
+
+export function KanaChat() {
+  const [messages, setMessages] = useState([])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!input.trim()) return
+
+    // Add user message
+    const userMsg = { role: 'user', content: input }
+    setMessages([...messages, userMsg])
+    setInput('')
+    setLoading(true)
+
+    try {
+      // Get KANA response
+      const response = await kana.chat(input)
+      const kanaMsg = { role: 'kana', content: response.content }
+      setMessages(prev => [...prev, kanaMsg])
+    } catch (error) {
+      console.error('KANA Error:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="chat-container">
+      <div className="messages">
+        {messages.map((msg, i) => (
+          <div key={i} className={\`message message-\${msg.role}\`}>
+            {msg.content}
+          </div>
+        ))}
+        {loading && <div className="typing">KANA is typing...</div>}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask KANA anything..."
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  )
+}`}</code></pre>
+      </div>
+    </div>
+
+    <!-- Solana Integration -->
+    <div class="bento-card p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-cyan-glow/10">
+          <Icon name="lucide:wallet" class="text-cyan-glow size-5" />
+        </div>
+        <h2 class="font-mono text-xl font-semibold text-foreground">Solana Wallet Helper</h2>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        Use KANA to validate wallet addresses and provide security tips:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-muted-foreground">TypeScript</span>
+          <button class="code-badge hover:bg-warm-gold/25 transition-colors cursor-pointer">Copy</button>
+        </div>
+        <pre class="font-mono text-xs text-foreground overflow-x-auto"><code>{`import { Kana } from '@kana/sdk'
+import { PublicKey } from '@solana/web3.js'
+
+const kana = new Kana({
+  apiKey: process.env.KANA_API_KEY,
+  network: 'mainnet-beta'
+})
+
+async function validateWalletWithKana(address: string) {
+  // Validate format
+  try {
+    new PublicKey(address)
+  } catch {
+    return { valid: false, message: 'Invalid address format' }
+  }
+
+  // Check with KANA for known scams
+  const validation = await kana.validateAddress(address)
+
+  if (validation.isScam) {
+    return {
+      valid: false,
+      message: '⚠️ Warning: This address is flagged as suspicious',
+      details: validation.reason
+    }
+  }
+
+  // Get security tips
+  const tips = await kana.getKnowledge('security')
+
+  return {
+    valid: true,
+    message: '✓ Address appears safe',
+    securityTips: tips
+  }
+}
+
+// Usage
+const result = await validateWalletWithKana('7xKXt...AbC')
+console.log(result.message)`}</code></pre>
+      </div>
+    </div>
+
+    <!-- Knowledge Base Query -->
+    <div class="bento-card p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-amber/10">
+          <Icon name="lucide:database" class="text-amber size-5" />
+        </div>
+        <h2 class="font-mono text-xl font-semibold text-foreground">Knowledge Base Queries</h2>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        Query specific knowledge domains for educational content:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-muted-foreground">JavaScript</span>
+          <button class="code-badge hover:bg-warm-gold/25 transition-colors cursor-pointer">Copy</button>
+        </div>
+        <pre class="font-mono text-xs text-foreground overflow-x-auto"><code>{`import { Kana } from '@kana/sdk'
+
+const kana = new Kana({ apiKey: process.env.KANA_API_KEY })
+
+// Get specific knowledge
+async function getTutorial(topic) {
+  const knowledge = {
+    solana: await kana.getKnowledge('solana'),
+    jito: await kana.getKnowledge('jito'),
+    jupiter: await kana.getKnowledge('jupiter'),
+    security: await kana.getKnowledge('security')
+  }
+
+  return knowledge[topic] || 'Topic not found'
+}
+
+// Natural language query
+async function askKana(question) {
+  const response = await kana.chat(question, {
+    knowledge: ['solana', 'web3', 'security'],
+    temperature: 0.7,
+    includeMetadata: true
+  })
+
+  console.log('Answer:', response.content)
+  console.log('Confidence:', response.confidence)
+  console.log('Topics:', response.topics)
+
+  return response
+}
+
+// Examples
+await getTutorial('solana')
+await askKana('How does Jupiter aggregator work?')
+await askKana('What are the risks of sharing private keys?')`}</code></pre>
+      </div>
+    </div>
+
+    <!-- CLI Tool Example -->
+    <div class="bento-card p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-warm-gold/10">
+          <Icon name="lucide:terminal" class="text-warm-gold size-5" />
+        </div>
+        <h2 class="font-mono text-xl font-semibold text-foreground">CLI Tool</h2>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        Build a command-line tool powered by KANA:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-muted-foreground">Node.js CLI</span>
+          <button class="code-badge hover:bg-warm-gold/25 transition-colors cursor-pointer">Copy</button>
+        </div>
+        <pre class="font-mono text-xs text-foreground overflow-x-auto"><code>{`#!/usr/bin/env node
+import { Kana } from '@kana/sdk'
+import readline from 'readline'
+
+const kana = new Kana({ apiKey: process.env.KANA_API_KEY })
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+console.log('🌟 KANA Terminal - Divine Intelligence CLI')
+console.log('Type your question or /help for commands\\n')
+
+function prompt() {
+  rl.question('> ', async (input) => {
+    if (!input.trim()) {
+      prompt()
+      return
+    }
+
+    if (input === '/exit' || input === '/quit') {
+      console.log('gn fren 🌙')
+      rl.close()
+      return
+    }
+
+    try {
+      const response = await kana.chat(input)
+      console.log(\`\\n\${response.content}\\n\`)
+    } catch (error) {
+      console.error('Error:', error.message)
+    }
+
+    prompt()
+  })
+}
+
+prompt()`}</code></pre>
+      </div>
+
+      <div class="mt-4 rounded-lg border border-border bg-card-bg p-4">
+        <div class="font-mono text-xs text-muted-foreground mb-2">Usage:</div>
+        <div class="font-mono text-xs space-y-1">
+          <div class="text-warm-gold">$ npm install -g kana-cli</div>
+          <div class="text-cyan-glow">$ kana</div>
+          <div class="text-muted-foreground">> Tell me about SVM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discord Bot Example -->
+    <div class="bento-card p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex size-10 items-center justify-center rounded-lg bg-cyan-glow/10">
+          <Icon name="lucide:bot" class="text-cyan-glow size-5" />
+        </div>
+        <h2 class="font-mono text-xl font-semibold text-foreground">Discord Bot Integration</h2>
+      </div>
+
+      <p class="font-sans text-sm text-muted-foreground mb-4">
+        Create a Discord bot that answers questions using KANA:
+      </p>
+
+      <div class="rounded-lg bg-void-black border border-border p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-muted-foreground">Discord.js</span>
+          <button class="code-badge hover:bg-warm-gold/25 transition-colors cursor-pointer">Copy</button>
+        </div>
+        <pre class="font-mono text-xs text-foreground overflow-x-auto"><code>{`import { Client, GatewayIntentBits } from 'discord.js'
+import { Kana } from '@kana/sdk'
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+})
+
+const kana = new Kana({ apiKey: process.env.KANA_API_KEY })
+
+client.on('messageCreate', async (message) => {
+  // Ignore bots
+  if (message.author.bot) return
+
+  // Only respond to mentions or commands
+  const mentioned = message.mentions.has(client.user)
+  const isCommand = message.content.startsWith('!kana')
+
+  if (!mentioned && !isCommand) return
+
+  // Extract query
+  const query = message.content
+    .replace(\`<@\${client.user.id}>\`, '')
+    .replace('!kana', '')
+    .trim()
+
+  if (!query) {
+    message.reply('gm! Ask me anything about Solana, Web3, or dev life.')
+    return
+  }
+
+  try {
+    // Show typing indicator
+    await message.channel.sendTyping()
+
+    // Get KANA response
+    const response = await kana.chat(query)
+
+    // Send response (split if too long)
+    const chunks = response.content.match(/[\\s\\S]{1,2000}/g)
+    for (const chunk of chunks) {
+      await message.reply(chunk)
+    }
+  } catch (error) {
+    message.reply('Oops! Divine connection interrupted. Try again.')
+  }
+})
+
+client.login(process.env.DISCORD_TOKEN)`}</code></pre>
+      </div>
+    </div>
+
+    <!-- More Examples -->
+    <div class="bento-card p-6">
+      <h2 class="font-mono text-xl font-semibold text-foreground mb-4">More Examples</h2>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <a href="https://github.com" target="_blank" class="flex items-center justify-between p-4 rounded-lg border border-border hover:border-warm-gold/50 transition-colors group">
+          <div class="flex items-center gap-3">
+            <Icon name="mdi:github" class="text-warm-gold size-5" />
+            <div>
+              <div class="font-mono text-sm font-medium text-foreground group-hover:text-warm-gold transition-colors">GitHub Repository</div>
+              <div class="font-sans text-xs text-muted-foreground">Full source code</div>
+            </div>
+          </div>
+          <Icon name="lucide:external-link" class="text-muted-foreground size-4" />
+        </a>
+
+        <a href="https://github.com" target="_blank" class="flex items-center justify-between p-4 rounded-lg border border-border hover:border-cyan-glow/50 transition-colors group">
+          <div class="flex items-center gap-3">
+            <Icon name="lucide:code-2" class="text-cyan-glow size-5" />
+            <div>
+              <div class="font-mono text-sm font-medium text-foreground group-hover:text-cyan-glow transition-colors">Example Projects</div>
+              <div class="font-sans text-xs text-muted-foreground">Ready-to-deploy apps</div>
+            </div>
+          </div>
+          <Icon name="lucide:external-link" class="text-muted-foreground size-4" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      <a href="/docs/api-reference" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
+        <div class="flex items-center gap-2 mb-2">
+          <Icon name="lucide:arrow-left" class="text-warm-gold size-4" />
+          <span class="font-mono text-sm text-muted-foreground">Previous</span>
+        </div>
+        <div class="font-mono text-base font-semibold text-foreground group-hover:text-warm-gold transition-colors">API Reference</div>
+      </a>
+
+      <a href="/chat" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors text-right">
+        <div class="flex items-center justify-end gap-2 mb-2">
+          <span class="font-mono text-sm text-muted-foreground">Try it live</span>
+          <Icon name="lucide:arrow-right" class="text-cyan-glow size-4" />
+        </div>
+        <div class="font-mono text-base font-semibold text-foreground group-hover:text-cyan-glow transition-colors">KANA Terminal</div>
+      </a>
+    </div>
+  </section>
+</Layout>
